@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Visualization</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+
+  <style>
+    body {
+              background-color: #FFE4C4;
+              background-size: cover;
+              color: #333;
+              text-align: center;
+              font-family: 'Arial', sans-serif;
+              padding: 180px 0; /* Adjusted padding */
+              margin: 0; /* Reset margin */
+              animation: fadeIn 1s ease;
+              /* Hide overflow content */
+          }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    
+    
+    
+
+    /* Logout button styles */
+    .logout-button {
+        background-color: #333;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .logout-button:hover {
+        background-color: #555;
+        transform: scale(1.1);
+    }
+
+    /* Header styles */
+    header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999; /* Ensure it's above other content */
+        }
+
+        .logo {
+            font-size: 1em;
+            pointer-events: none;
+            margin-right: 150px;
+        }
+        .logo img {
+            width:50px;
+            position: absolute;
+            display: flex;
+            top: 20px;
+            left: 20px;
+            margin-left:60px;
+            border-radius:28%;
+        }
+        .name {
+            color: white;
+            font-size: 30px;
+            font-style: italic;
+            font-weight: 300; /* Adjust font weight as needed */
+            margin-left: 120px;
+        }
+
+
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            margin-right: 20px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color:cornsilk;
+            padding: 10px 8px;
+            border-radius: 90px;
+            margin: 10 5px;
+            font-weight: 600;
+        }
+        .navigation a:hover {
+            background: a;
+            color:lightblue;
+        }
+    #waveplot-container,
+    #spectrogram-container,
+    #heatmap-container {
+      margin: 0 auto; /* Center the containers horizontally */
+      max-width: 90%; /* Adjust the maximum width as needed */
+      margin-bottom: 50px;
+     }    
+  </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="logo">
+        <h2 class="name">Ser.</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="About" class="active">Home</a>
+        <a href="About" class="active">About</a>
+        <a href="feedback" class="active">Feedback</a>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </nav>
+</header>
+
+{% if audio_data and audio_features %}
+
+<h1>Audio Visualization</h1>
+
+<div id="waveplot-container"></div>
+<div id="spectrogram-container"></div>
+<div id="heatmap-container"></div>
+
+<script>
+  // Function to create the waveplot (unchanged)
+  function createWaveplot(data) {
+    var trace = {
+      x: [...Array(data.length).keys()],
+      y: data,
+      type: 'scatter',
+      mode: 'lines',
+      line: {
+        color: 'blue',
+        width: 1
+      }
+    };
+
+    var layout = {
+      title: 'Waveplot',
+      xaxis: {
+        title: 'Time (samples)'
+      },
+      yaxis: {
+        title: 'Amplitude'
+      }
+    };
+
+    Plotly.newPlot('waveplot-container', [trace], layout);
+  }
+
+  
+  // Create visualizations when the page loads
+  window.onload = function() {
+    createWaveplot({{ audio_data|safe }});
+  
+  
+  };
+</script>
+
+{% else %}
+  <p>No audio data or features provided for visualization.</p>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Feedback Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <style>
+        body {
+            background-image: url('/static/bg2.png'); /* Replace with the actual path to your image file */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            min-height: 100vh; /* Set minimum height to 100% of viewport height */
+        }
+
+        .feedback-form {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%; /* Set the width of the form */
+            max-width: 500px; /* Limit the maximum width of the form */
+            text-align: center;
+        }
+
+        .feedback-form h2 {
+            color:black; /* Dark text color */
+        }
+
+        .feedback-form input[type="text"],
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .feedback-form textarea {
+            height: 150px; /* Set the height of the textarea */
+        }
+
+        .feedback-form input[type="submit"] {
+            background-color: #4CAF50; /* Green submit button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .feedback-form input[type="submit"]:hover {
+            background-color: #45a049; /* Darker green hover color */
+        }
+        .logout-button {
+        background-color: #333;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .logout-button:hover {
+        background-color: #555;
+        transform: scale(1.1);
+    }
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="logo">
+        <h2 class="name">Ser.</h2>
+    </div>
+    <nav class="navigation">
+        <a href="About" class="active">Home</a>
+        <a href="About" class="active">About</a>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+
+    </nav>
+</header>
+
+<div class="feedback-form">
+    <h2>Feedback Form</h2>
+    <form action="/feedback" method="post"> <!-- Adjusted action to "/feedback" -->
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <input type="text" name="email" placeholder="Your Email" required><br>
+        <textarea name="feedback" placeholder="Your Feedback" required></textarea><br> <!-- Changed "message" to "feedback" -->
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>

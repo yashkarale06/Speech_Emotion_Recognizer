@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Emotion Predicted</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    <style>
+        body {
+            background-color: #FFE4C4;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding: 180px 0; /* Adjusted padding */
+            margin: 0; /* Reset margin */
+            animation: fadeIn 1s ease;
+            overflow: hidden; /* Hide overflow content */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .emoji {
+            font-size: 5em;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .emoji:hover {
+            transform: scale(1.2);
+        }
+
+        .quote {
+            font-size: 1.5em;
+            margin: 30px;
+            color: #777;
+        }
+        
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999; /* Ensure it's above other content */
+        }
+
+        .logo {
+            font-size: 1em;
+            pointer-events: none;
+            margin-right: 150px;
+        }
+        .logo img {
+            width:50px;
+            position: absolute;
+            display: flex;
+            top: 20px;
+            left: 20px;
+            margin-left:60px;
+            border-radius:28%;
+        }
+        .name {
+            color: white;
+            font-size: 30px;
+            font-style: italic;
+            font-weight: 300; /* Adjust font weight as needed */
+            margin-left: 120px;
+        }
+
+
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            margin-right: 20px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color:cornsilk;
+            padding: 10px 8px;
+            border-radius: 90px;
+            margin: 10 5px;
+            font-weight: 600;
+        }
+        .navigation a:hover {
+            background: a;
+            color:lightblue;
+        }
+
+        .logout-button {
+        background-color: #333;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .logout-button:hover {
+        background-color: #555;
+        transform: scale(1.1);
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="logo">
+            <h2 class="name">Ser.</h2>
+        </div>
+
+        <nav class="navigation">
+            <a href="Home" class="active">Home</a>
+            <a href="About" class="active">About</a>
+            <a href="feedback" class="active">Feedback</a>
+            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        </nav>
+    </header>
+
+    <div>
+        <h1>Predicted Emotion</h1>
+        <p>The model predicts the emotion as: {{  predicted_emotion }}</p>
+        <div class="emoji" onclick="toggleQuote()">
+            {% if  predicted_emotion == 'happy' %}
+                😊
+            {% elif  predicted_emotion == 'sad' %}
+                😢
+            {% elif  predicted_emotion == 'calm' %}
+                😌
+            {% elif  predicted_emotion == 'disgust' %}
+                😖
+            {% elif  predicted_emotion == 'fearful' %}
+                😨
+            {% elif  predicted_emotion == 'angry' %}
+                😡
+            {% endif %}
+        </div>
+        
+        <div class="quote" id="emotionQuote">
+            <!-- Add quotes for each emotion -->
+            {% if  predicted_emotion == 'happy' %}
+                {% set quotes = [
+                    "Happiness is not something ready-made. It comes from your own actions. - Dalai Lama",
+                    "The best way to cheer yourself up is to try to cheer somebody else up. - Mark Twain",
+                    "The only joy in the world is to begin. - Cesare Pavese",
+                    "Success is not the key to happiness. Happiness is the key to success. - Albert Schweitzer",
+                    "The grand essentials of happiness are: something to do, something to love, and something to hope for. - Allan K. Chalmers"
+                ] %}
+            {% elif  predicted_emotion == 'sad' %}
+                {% set quotes = [
+                    "The wound is the place where the light enters you. - Rumi",
+                    "Tears come from the heart and not from the brain. - Leonardo da Vinci",
+                    "The soul would have no rainbow if the eyes had no tears. - John Vance Cheney",
+                    "We must understand that sadness is an ocean, and sometimes we drown, while other days we are forced to swim. - R.M. Drake",
+                    "Every man has his secret sorrows which the world knows not; and often times we call a man cold when he is only sad. - Henry Wadsworth Longfellow"
+                ] %}
+            {% elif  predicted_emotion == 'calm' %}
+                {% set quotes = [
+                    "Within you, there is a stillness and a sanctuary to which you can retreat at any time. - Hermann Hesse",
+                    "The quieter you become, the more you can hear. - Ram Dass",
+                    "In the midst of movement and chaos, keep stillness inside of you. - Deepak Chopra",
+                    "Calmness is the cradle of power. - Josiah Gilbert Holland",
+                    "Inhale the future, exhale the past. - Unknown"
+                ] %}
+            {% elif  predicted_emotion == 'disgust' %}
+                {% set quotes = [
+                    "The best revenge is to be unlike him who performed the injustice. - Marcus Aurelius",
+                    "Disgust and resolve are two of the great emotions that lead to change. - Jim Rohn",
+                    "If you're disgusted with yourself, you've got to know it. - Bill Cosby",
+                    "The things that we love tell us what we are. - Thomas Aquinas",
+                    "There is no instinct like that of the heart. - Lord Byron"
+                ] %}
+            {% elif  predicted_emotion == 'fearful' %}
+                {% set quotes = [
+                    "Courage is resistance to fear, mastery of fear - not absence of fear. - Mark Twain",
+                    "The only thing we have to fear is fear itself. - Franklin D. Roosevelt",
+                    "The oldest and strongest emotion of mankind is fear, and the oldest and strongest kind of fear is fear of the unknown. - H.P. Lovecraft",
+                    "Fear is the path to the dark side. Fear leads to anger, anger leads to hate, hate leads to suffering. - Yoda",
+                    "Do not be afraid of your fears. They're not there to scare you. They're there to let you know that something is worth it. - C. JoyBell C."
+                ] %}
+            {% elif  predicted_emotion == 'angry' %}
+                {% set quotes = [
+                    "If you are patient in one moment of anger, you will escape a hundred days of sorrow. - Chinese Proverb",
+                    "Speak when you are angry and you will make the best speech you will ever regret. - Ambrose Bierce",
+                    "Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured. - Mark Twain",
+                    "Anybody can become angry - that is easy, but to be angry with the right person and to the right degree and at the right time and for the right purpose, and in the right way - that is not within everybody's power and is not easy. - Aristotle",
+                    "For every minute you are angry you lose sixty seconds of happiness. - Ralph Waldo Emerson"
+                ] %}
+            {% endif %}
+            
+            {% set random_index = range(quotes|length)|random %}
+            {{ quotes[random_index] }}
+        </div>
+    </div>
+    
+</body>
+</html>

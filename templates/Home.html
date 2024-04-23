@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speech Emotion Recognizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <style>
+        body {
+            background-image: url('/static/bg2.png'); /* Replace with the actual path to your image file */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center-align content horizontally */
+            justify-content: center; /* Center-align content vertically */
+        }
+        
+        /* Style for the message */
+        .message {
+            font-weight: 500;
+            font-size: 20px; /* Adjust font size */
+            color: lightblue; /* Adjust color */
+            margin-bottom: 20px; /* Add space below the message */
+        }
+
+        .logout-button {
+        background-color: #333;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .logout-button:hover {
+        background-color: #555;
+        transform: scale(1.1);
+    }
+    </style>
+</head>
+<body>
+  <header>
+      <div class="logo">
+          <img src="{{ url_for('static', filename='logo.jpg') }}" alt="logo">
+          <h2 class="name">Ser.</h2>
+      </div>
+      <nav class="navigation">
+        
+          <a href="About" class="active">About</a>
+          <a href="feedback" class="active">Feedback</a>
+          <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+      </nav>
+      <nav class="bottom-navigation">
+          <ul>
+              <a href="get_started">
+                  <button class="button">Get Started</button>
+              </a>
+          </ul>
+      </nav>
+  </header>
+    
+
+    <div class="center-left">
+        <!-- Message displayed in small font size -->
+        <p class="message">Welcome, {{ session['username'] }}!</p>
+        <div class="information">
+            
+            <h2>SPEECH EMOTION RECOGNITION</h2>
+            <p>
+                Speech Emotion Recognition (SER) is the task of automatically recognizing the emotional
+                state or emotional content from spoken language. It has applications in various fields
+                such as human-computer interaction, healthcare, and customer service.
+            </p>
+           
+            
+        </div>
+    </div>
+
+    
+
+    <script>
+        // Function to display flash message
+        function displayFlashMessage() {
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    var flashMessage = "{{ messages[0] }}";
+                    alert(flashMessage);
+                {% endif %}
+            {% endwith %}
+        }
+    
+        // Call the function when the page loads
+        window.onload = function() {
+            displayFlashMessage();
+        }
+    
+        // Function to update welcome message with username
+        function updateWelcomeMessage() {
+            var welcomeMessage = document.getElementById("welcomeMessage");
+            var username = "{{ session['username'] }}";
+            welcomeMessage.innerText = "Welcome, " + username + "!";
+        }
+    
+        // Call the function to update welcome message
+        updateWelcomeMessage();
+    </script>
+    
+
+
+
+    <script src="/static/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</body>
+
+</html>

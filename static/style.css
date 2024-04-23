@@ -1,0 +1,414 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+section{
+    position: relative;
+    min-height: 100vh;
+    background-color: #338dc9;
+    padding:20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+section .container{
+    position: relative;
+    width:800px;
+    height:500px;
+    background:white;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .5);
+    overflow: hidden;
+}
+section .container .user{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+}
+section .container .user .imgBox{
+    position:relative;
+    width:50%;
+    height:100%;
+    background-color: white;
+    transition: 0.5s;
+}
+section .container .user .imgBox img{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+section .container .user .formBox{
+    position: relative;
+    width:50%;
+    height:100;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:40px;
+    transition: 0.5s;
+}
+section .container .user .formBox h2{
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width:100%;
+    margin-bottom: 10px;
+    color:gray;
+}
+section .container .user .formBox input{
+    width:100%;
+    font-weight: 600;
+    background-color: #f5f5f5;
+    padding: 10px;
+    color:#333;
+    border:none;
+    outline:none;
+    font-size: 14px;
+    margin: 8px 0;
+    letter-spacing: 2px;
+}
+section .container .user .formBox form input[type="submit"]{
+    max-width:100%;
+    background-color: #677eff;
+    color: white;
+    cursor:pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: 0.5s;
+}
+section .container.active .user .formBox form input[type="submit"]{
+    background-color: #e73e49;
+}
+section .container .user .formBox form .signup{
+    position:relative;
+    margin-top:20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color:gray;
+    text-transform: uppercase;
+}
+section .container .user .formBox form .signup a{
+    font-weight: 600;
+    text-decoration: none;
+    color:#677eff
+}
+section .container .signupBox{
+    pointer-events: none;
+}
+section .container.active .signupBox{
+    pointer-events: initial;
+}
+section .container .signupBox .formBox{
+    left:100%;
+}
+section .container.active .signupBox .formBox{
+    left:0;
+}
+section .container .signupBox .imgBox{
+    left:-100%;
+}
+section .container.active .signupBox .imgBox{
+    left:0;
+}
+
+section .container .signinBox .formBox{
+    left:0;
+}
+section .container.active .signinBox .formBox{
+    left:-100%;
+}
+section .container .signinBox .imgBox{
+    left:0;
+}
+section .container.active .signinBox .imgBox{
+    left:100%;
+}
+
+@media(max-width:991px){
+    section .container{
+        max-width: 400px;
+    }
+    section .container .imgBox{
+        display: none;
+    }
+    section .container .user .formBox{
+        width:100%;
+    }
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; ;
+    padding: 25px 12.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.navigation a {
+    text-decoration: none;
+    color:cornsilk;
+    padding: 10px 8px;
+    border-radius: 90px;
+    margin: 10 5px;
+    font-weight: 600;
+}
+.navigation a:hover {
+    background: a;
+    color:lightblue;
+}
+.logo {
+    font-size: 1em;
+    pointer-events: none;
+    margin-right: 150px;
+}
+
+.logo img {
+    width:50px;
+    position: absolute;
+    display: flex;
+    top: 20px;
+    left: 20px;
+    margin-left:60px;
+    border-radius:28%;
+}
+
+.name {
+    color: white;
+    font-size: 30px;
+    position: relative;
+    font-style: italic;
+    font-weight: 500;
+    margin-left: -45px; /* Adjust the left margin to move the text more to the left */
+}
+
+button {
+    font-size: 1em;
+    background:transparent;
+    padding: 6px 24px;
+    color: green;
+    border-radius: 6px;
+    margin: 0 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border: 2px solid #fff;
+}
+.bottom-navigation{
+  
+    font-size: 1em;
+    background:transparent;
+    padding: 4px 20px;
+    color: green;
+    border-radius: 6px;
+    margin: 0 40px;
+    cursor: pointer;
+    font-weight: 600;
+    
+    bottom:0;
+    right:0;
+    position:fixed;
+}
+.bottom-navigation ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    padding: 8px 0;
+    margin: 40px;
+    align-items: flex-end;
+}
+.bottom-navigation a {
+    text-decoration: none;
+    color: inherit; /* Inherit the text color from parent */
+    padding: 5px 5px;
+}
+.bottom-navigation button:hover{
+    color:white;
+}
+.bottom-navigation button:active{
+    transform: scale(0.98);
+}
+
+.button {
+    font-size: 1em;
+    background:transparent;
+    padding: 6px 24px;
+    color: green;
+    border-radius: 6px;
+    margin: 1px 2px;
+    cursor: pointer;
+    font-weight: 600;
+    border: 2px solid #fff;
+}
+.navigation button:hover{
+    color: white;
+}
+.navigation button:active{
+    transform: scale(0.98);
+}
+.navigation a:first-child {
+    margin-right: 2px; /* Add right margin to the first link (Home) */
+}
+.center-left {
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align content to the top */
+    flex-direction: column; /* Stack items vertically */
+}
+
+.information {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px; 
+    border-radius: 10px;
+    max-width: 800px; /* Adjust the maximum width as needed */
+    text-align: left; /* Align text to the left within the div */
+    margin-right: 635px;
+    backdrop-filter: blur(20px); /* Add margin to the left for spacing */
+}
+
+
+.information h2 {
+    font-size: 40px; /* Adjust the font size as needed */
+    color:rgb(19, 184, 49);
+    font-weight:bold;
+     /* Change the heading color */
+}
+
+.information h3 {
+    font-size: 70px; /* Adjust the font size as needed */
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight:bolder
+     /* Change the heading color */
+}
+
+.information p {
+    font-size: 18px; /* Adjust the font size as needed */
+    color:white;
+    margin-bottom: 20px; /* Adjust margin bottom for space */
+    line-height: 1.6;
+     /* Change the text color */
+}
+
+.container {
+    margin-top: 60px; /* Add space from the top */
+    padding-left: 1px; 
+    justify-content: center;/* Adjust the left padding to move the content to the left */
+   
+}
+
+
+.form-box-get-started {
+   
+    padding: 80px;
+    border: 1px solid #ccc; /* Add a border around the form-box */
+    border-radius: 5px;
+    backdrop-filter: blur(40px);
+    margin-left:400px; 
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width:700px;
+    
+
+}
+
+
+.form-box-get-started h2 {
+    color:white;
+    text-align:center;
+    font-size:40px;
+}
+
+.icon-mic {
+    font-size: 48px; /* Adjust the microphone icon size */
+    color:black; /* Change icon color to blue */
+    display: block; /* Display as a block element to center it */
+    margin: 0 auto 20px; /* Center and add space below */
+}
+
+.custom-file-input-wrapper {
+    text-align: center; /* Center-align the content */
+    margin-top: 20px; /* Add space from the top */
+}
+
+
+/* Style the custom file input wrapper */
+.custom-file-input-wrapper label {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px; /* Add horizontal padding */
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Style the file input, hide it, and adjust its size */
+#fileInput {
+    display: none; /* Hide the original file input */
+}
+
+/* Style the "Submit" button */
+.btn-primary {
+   
+    margin-top: 20px; /* Add space below the file input */
+    display: block; /* Display as a block element */
+    width: 50%; /* Make it full width within the container */
+    margin-left: 130px; /* Add left margin to move it to the left */
+}
+
+.rec-container{
+    padding: 80px;
+    border: 1px solid #ccc; /* Add a border around the form-box */
+    border-radius: 5px;
+    backdrop-filter: blur(40px);
+    margin-left:770px; 
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width:700px;
+    height:340px;
+
+}
+.rec-container h2 {
+    color:white;
+    text-align:center;
+    font-size:40px;
+
+
+}
+.btn-sprimary {
+    margin-top: 20px; /* Add space below the file input */
+    display: block; /* Display as a block element */
+    width: 50%; /* Make it full width within the container */
+    margin-left: 130px;
+    
+
+}

@@ -1,0 +1,7 @@
+pip install flask 
+import pickle 
+import librosa
+import soundfile
+import mysql_connector
+import numpy 
+import os
