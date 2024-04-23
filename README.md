@@ -32,9 +32,13 @@ HOW TO USE:
 Dependencies:
 
 Flask: Web framework for Python
+
 HTML: Markup language for creating web pages
+
 CSS: Styling language for designing web pages
+
 Python: Programming language used for backend logic and emotion recognition
+
 XAMPP: Database solution for storing and managing application data
 
 Contributors:
