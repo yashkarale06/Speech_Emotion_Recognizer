@@ -14,7 +14,7 @@ Database Integration: The project utilizes XAMPP database technology for storing
 
 HOW TO USE:
 
-.Ensure that XAMPP server is running to enable database functionality.
+.Ensure that XAMPP server is running to enable database functionality
 .Launch the Flask environment to start the application.
 .Access the application through a web browser.
 .Choose between recording audio or inputting pre-existing audio files.
