@@ -14,12 +14,18 @@ Database Integration: The project utilizes XAMPP database technology for storing
 
 HOW TO USE:
 
-.Ensure that XAMPP server is running to enable database functionality
+.Ensure that XAMPP server is running to enable database functionality.
+
 .Launch the Flask environment to start the application.
+
 .Access the application through a web browser.
+
 .Choose between recording audio or inputting pre-existing audio files.
+
 .Once the audio is processed, view the emotional analysis results.
+
 .Explore the visual representation of the audio waveform for further insights.
+
 .All data collected and analyzed will be stored within the XAMPP database for future reference and analysis.
 
 
